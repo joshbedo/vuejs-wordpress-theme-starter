@@ -3,7 +3,8 @@ window.SETTINGS = {
   // This is likely determined by how many dispatched actions you have below
   // in the created() method
   LOADING_SEGMENTS: 2,
-  API_BASE_PATH: '/wp-json/wp/v2/'
+  API_BASE_PATH: '/wp-json/wp/v2/',
+  API_MENU: '/wp-json/menus/v1/menus/'
 }
 
 require('./bootstrap')
@@ -42,9 +43,9 @@ new Vue({
   render: h => h(App),
   created () {
     this.$store.commit(types.RESET_LOADING_PROGRESS)
+    this.$store.dispatch('getHeaderMenu');
     this.$store.dispatch('getAllCategories')
     this.$store.dispatch('getAllPages')
-
     // Once user is signed in/out, uncomment if you need Firebase authentication
     // auth.onAuthStateChanged(user => {
     //   if (user) {

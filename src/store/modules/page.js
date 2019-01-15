@@ -6,7 +6,8 @@ import { isNumber } from 'util';
 const state = {
   all: [],
   loaded: false,
-  page: null
+  page: null,
+  headerMenu: null,
 }
 
 // getters
@@ -27,19 +28,28 @@ const getters = {
     if (state.all.length < 1) { return false }
     let all = [...state.all]
     return all.splice(0, Math.min(limit, state.all.length))
+  },
+  headerMenu: state => () => {
+    return state.headerMenu.items;
   }
 }
 
 // actions
 const actions = {
-  getAllPages ({ commit }) {
+  getAllPages({ commit }) {
     api.getPages(pages => {
-      commit(types.STORE_FETCHED_PAGES, { pages })
-      commit(types.PAGES_LOADED, true)
-      commit(types.INCREMENT_LOADING_PROGRESS)
-    })
+      commit(types.STORE_FETCHED_PAGES, { pages });
+      commit(types.PAGES_LOADED, true);
+      commit(types.INCREMENT_LOADING_PROGRESS);
+    });
+  },
+
+  getHeaderMenu({ commit }) {
+    api.getHeaderMenu(items => {
+      commit(types.STORE_HEADER_MENU, { items });
+    });
   }
-}
+};
 
 // mutations
 const mutations = {
@@ -49,6 +59,10 @@ const mutations = {
 
   [types.PAGES_LOADED] (state, val) {
     state.loaded = val
+  },
+
+  [types.STORE_HEADER_MENU] (state, { items }) {
+    state.headerMenu = items;
   }
 }
 

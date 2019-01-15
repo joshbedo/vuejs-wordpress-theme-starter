@@ -41,4 +41,15 @@ export default {
         cb(e)
       })
   },
+
+  getHeaderMenu (cb) {
+    axios
+      .get(window.SETTINGS.API_MENU + "header-menu")
+      .then(response => {
+        cb(response.data);
+      })
+      .catch(e => {
+        cb(e);
+      });
+  }
 }

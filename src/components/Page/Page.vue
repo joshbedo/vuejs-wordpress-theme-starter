@@ -16,7 +16,7 @@ export default {
   computed: {
     ...mapGetters({
       page: 'page',
-      allPagesLoaded: 'allPagesLoaded'
+      allPagesLoaded: 'allPagesLoaded',
     }),
 
     pageContent() {

@@ -23,9 +23,6 @@ export default {
       allPagesLoaded: 'allPagesLoaded'
     })
   },
-
-  mounted() {
-  }
 }
 </script>
 

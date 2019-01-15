@@ -1,10 +1,5 @@
 <template>
     <b-container class="bv-example-row">
-        <b-jumbotron header="Bootstrap Vue" lead="Bootstrap 4 Components for Vue.js 2" >
-        <p>For more information visit website</p>
-        <b-btn variant="primary" href="https://bootstrap-vue.js.org" target="_blank">More Info</b-btn>
-        </b-jumbotron>
-
         <b-row>
             <b-col>
                 <recent-posts-widget limit="5">Recent Posts</recent-posts-widget>

@@ -8,7 +8,7 @@
         <b-collapse is-nav id="nav_collapse">
 
             <b-nav is-nav-bar>
-            <b-nav-item href="#">Link</b-nav-item>
+              <b-nav-item v-for="item in menuItems" v-bind:key="item.title" :href="item.url">{{ item.title }}</b-nav-item>
             </b-nav>
 
             <!-- Right aligned nav items -->
@@ -32,3 +32,26 @@
         </b-collapse>
     </b-navbar>
 </template>
+
+<script>
+import Loader from '../partials/Loader.vue';
+import { mapGetters } from 'vuex';
+
+export default {
+  computed: {
+    ...mapGetters({
+      page: 'page',
+      allPagesLoaded: 'allPagesLoaded',
+      // headerMenu: 'headerMenu'
+    }),
+
+    menuItems() {
+      return this.$store.getters.headerMenu();
+    }
+  },
+
+  components: {
+    Loader
+  }
+}
+</script>
